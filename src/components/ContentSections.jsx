@@ -1,22 +1,6 @@
 import './About.css';
 
-export const About = () => (
-    <section className="about-section">
-        <h2 className="section-title">Sentymentalna podróż na parkiet</h2>
-        <div className="about-content">
-            <p>
-                Ala Polacca to nie jest zwykły zespół coverowy. To muzyczny wehikuł czasu, który zabierze Cię prosto do serca polskich dancingu z przełomu tysiącleci.
-            </p>
-            <p>
-                W naszej muzyce łączymy czar eleganckich hoteli lat 90. z nieokiełznaną energią klubowych parkietów wczesnych lat dwutysięcznych.
-                Wybieramy to, co w tamtej epoce było najlepsze – od synth-popowych hymnów, przez dancingowe szlagiery, aż po ikoniczne polskie przeboje.
-            </p>
-            <p>
-                Wszystko gramy 100% na żywo, z szacunkiem do oryginału, ale z nowoczesnym sznytem.
-            </p>
-        </div>
-    </section>
-);
+import './About.css';
 
 
 export const Repertoire = () => (
