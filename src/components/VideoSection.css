@@ -183,3 +183,39 @@
     background: #555;
     transform: translate(-50%, -50%) rotate(45deg);
 }
+
+@media (max-width: 600px) {
+    .video-section {
+        padding: 2rem 0.5rem;
+    }
+
+    .tv-set {
+        padding: 0.8rem;
+        /* Reduce padding inside the TV box */
+        width: 100%;
+        max-width: 100%;
+        /* Ensure it doesn't overflow */
+        border-width: 2px;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
+    }
+
+    .tv-screen-container {
+        border-width: 8px;
+        /* Thinner bezel for small screens */
+    }
+
+    .tv-controls {
+        padding: 0;
+        margin-top: 5px;
+    }
+
+    .brand-badge {
+        font-size: 0.6rem;
+        letter-spacing: 1px;
+    }
+
+    .knob {
+        width: 24px;
+        height: 24px;
+    }
+}

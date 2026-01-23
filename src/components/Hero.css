@@ -299,6 +299,10 @@
         top: 5%;
         right: -10%;
     }
+
+    .sticker-badge {
+        display: none;
+    }
 }
 
 /* Social Links */
