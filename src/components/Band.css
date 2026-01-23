@@ -1,0 +1,110 @@
+.band-section {
+    padding: var(--spacing-xl) var(--spacing-md);
+    background-color: var(--color-bg-navy);
+    text-align: center;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll on page, but allow in grid */
+}
+
+.section-title {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-xl);
+    color: var(--color-text-gold);
+}
+
+.members-grid {
+    display: grid;
+    /* Force 5 columns on large screens */
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--spacing-md);
+    /* Reduced gap to fit */
+    max-width: 1400px;
+    /* Wider max-width */
+    margin: 0 auto;
+    align-items: start;
+}
+
+.member-card {
+    text-align: left;
+    padding: var(--spacing-sm);
+    transition: transform 0.3s;
+    background: #000;
+    border: 2px solid var(--color-white);
+    box-shadow: 6px 6px 0 var(--color-text-gold);
+    /* Slightly smaller shadow to fit */
+    height: 100%;
+}
+
+.member-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 10px 10px 0 var(--color-accent-pink);
+    z-index: 10;
+    position: relative;
+}
+
+.member-image-wrapper {
+    width: 100%;
+    aspect-ratio: 0.8;
+    /* Taller portrait for 'strip' feel? Or keep square? User said "photos". Let's try 0.8 for a poster look */
+    overflow: hidden;
+    margin-bottom: var(--spacing-md);
+    border-bottom: 4px solid var(--color-text-gold);
+    position: relative;
+    background-color: #000;
+}
+
+.member-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(100%) sepia(20%) contrast(1.2);
+    transition: filter 0.4s ease-in-out, transform 0.4s;
+}
+
+.member-image-wrapper:hover .member-image {
+    filter: grayscale(0%) sepia(0%) contrast(1);
+    transform: scale(1.05);
+}
+
+.member-name {
+    font-size: 1.1rem;
+    /* Smaller font to fit 5 in a row */
+    color: var(--color-white);
+    margin-bottom: var(--spacing-sm);
+    font-weight: bold;
+}
+
+.member-role {
+    color: var(--color-accent-pink);
+    font-weight: 700;
+    margin-bottom: var(--spacing-sm);
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    min-height: 2.4em;
+    /* Align text */
+}
+
+.member-desc {
+    font-size: 0.85rem;
+    line-height: 1.4;
+    color: #ccc;
+}
+
+/* Mobile: Stack them or Scroll them? "In line" usually means desktop. On mobile 5 in row is impossible.
+   I will use a scroll container for mobile to keep the "line" concept, or stack. Stacking is safer for UX.
+   But user asked for "retro crazy", maybe horizontal scroll? Let's stack for readability first. */
+@media (max-width: 1024px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .members-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .member-image-wrapper {
+        aspect-ratio: 1;
+    }
+}
