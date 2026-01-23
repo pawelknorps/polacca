@@ -1,12 +1,35 @@
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import './VideoSection.css';
 
 const VideoSection = () => {
     const [isOn, setIsOn] = useState(true);
+    const videoRef = useRef(null);
 
     const togglePower = () => {
         setIsOn(!isOn);
     };
+
+    useEffect(() => {
+        const handleHashChange = () => {
+            if (window.location.hash === '#video' && videoRef.current) {
+                videoRef.current.play().catch(error => {
+                    console.log("Autoplay prevented:", error);
+                });
+            }
+        };
+
+        // Check initial hash
+        if (window.location.hash === '#video') {
+            handleHashChange();
+        }
+
+        // Listen for hash changes (clicking the button)
+        window.addEventListener('hashchange', handleHashChange);
+
+        return () => {
+            window.removeEventListener('hashchange', handleHashChange);
+        };
+    }, []);
 
     return (
         <section className="video-section" id="video">
@@ -18,11 +41,10 @@ const VideoSection = () => {
                         {isOn ? (
                             <>
                                 <video
+                                    ref={videoRef}
                                     className="tv-video"
                                     src={`${import.meta.env.BASE_URL}assets/9ce7488c-9f40-4a20-917b-4fd1439f5339.mp4`}
                                     controls
-                                    autoPlay
-                                    muted
                                     loop
                                     playsInline
                                 />
