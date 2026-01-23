@@ -5,5 +5,5 @@ import react from '@vitejs/plugin-react'
 export default defineConfig({
   plugins: [react()],
   // Use repo name for production (GitHub Pages), root for local dev
-  base: process.env.NODE_ENV === 'production' ? '/ala-polacca-website/' : '/',
+  base: process.env.NODE_ENV === 'production' ? '/polacca/' : '/',
 })
