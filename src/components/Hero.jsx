@@ -30,8 +30,8 @@ const Hero = () => {
                 </p>
 
                 <div className="hero-actions">
-                    <button className="btn-primary swing-hover">Zarezerwuj Termin</button>
-                    <button className="btn-secondary blink-hover">Posłuchaj Nas</button>
+                    <a href="#contact" className="btn-primary swing-hover">Zarezerwuj Termin</a>
+                    <a href="#video" className="btn-secondary blink-hover">Posłuchaj Nas</a>
                 </div>
 
                 <div className="social-links">

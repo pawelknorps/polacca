@@ -9,7 +9,7 @@ const VideoSection = () => {
     };
 
     return (
-        <section className="video-section">
+        <section className="video-section" id="video">
             <h2 className="section-title" style={{ marginBottom: '2rem' }}>Taśmy Prawdy</h2>
 
             <div className="tv-set">

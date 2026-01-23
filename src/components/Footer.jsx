@@ -14,7 +14,7 @@ const Footer = () => {
     };
 
     return (
-        <footer className="footer">
+        <footer className="footer" id="contact">
             <h2 className="section-title blink-cursor">&gt; Zróbmy razem dancing!_</h2>
 
             <div className="terminal-window">
