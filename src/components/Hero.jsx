@@ -9,13 +9,13 @@ const Hero = () => {
 
             {/* Wycinanka Collage Background */}
             <div className="collage-background">
-                <img src="/assets/sylwester/IMG_6692.jpeg" className="collage-img img-1" alt="" />
-                <img src="/assets/sylwester/IMG_6668.jpeg" className="collage-img img-2" alt="" />
-                <img src="/assets/sylwester/IMG_6748.jpeg" className="collage-img img-3" alt="" />
-                <img src="/assets/sylwester/IMG_6780.jpeg" className="collage-img img-4" alt="" />
-                <img src="/assets/sylwester/IMG_6768.jpeg" className="collage-img img-5" alt="" />
-                <img src="/assets/sylwester/IMG_6718.jpeg" className="collage-img img-6" alt="" />
-                <img src="/assets/sylwester/IMG_6689.jpeg" className="collage-img img-7" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/sylwester/IMG_6692.jpeg`} className="collage-img img-1" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/sylwester/IMG_6668.jpeg`} className="collage-img img-2" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/sylwester/IMG_6748.jpeg`} className="collage-img img-3" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/sylwester/IMG_6780.jpeg`} className="collage-img img-4" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/sylwester/IMG_6768.jpeg`} className="collage-img img-5" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/sylwester/IMG_6718.jpeg`} className="collage-img img-6" alt="" />
+                <img src={`${import.meta.env.BASE_URL}assets/sylwester/IMG_6689.jpeg`} className="collage-img img-7" alt="" />
             </div>
 
             <div className="hero-content">

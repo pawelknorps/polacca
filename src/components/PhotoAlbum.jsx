@@ -3,12 +3,12 @@ import './PhotoAlbum.css';
 
 // Selection of photos for the album
 const albumPhotos = [
-    '/assets/sylwester/IMG_6668.jpeg',
-    '/assets/sylwester/IMG_6689.jpeg',
-    '/assets/sylwester/IMG_6718.jpeg',
-    '/assets/sylwester/IMG_6748.jpeg',
-    '/assets/sylwester/IMG_6768.jpeg',
-    '/assets/sylwester/IMG_6780.jpeg',
+    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6668.jpeg`,
+    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6689.jpeg`,
+    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6718.jpeg`,
+    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6748.jpeg`,
+    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6768.jpeg`,
+    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6780.jpeg`,
 ];
 
 const PhotoAlbum = () => {
