@@ -98,15 +98,22 @@
 .vibe-card {
     border: 2px solid var(--color-accent-pink);
     padding: var(--spacing-lg);
-    background: #000;
-    transition: transform 0.2s;
+    transition: transform 0.2s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
+    background: rgba(10, 10, 26, 0.85);
+}
+
+@supports (backdrop-filter: blur(10px)) {
+    .vibe-card {
+        background: rgba(10, 10, 26, 0.4);
+        backdrop-filter: blur(10px);
+    }
 }
 
 .vibe-card:hover {
     transform: translate(-5px, -5px);
-    box-shadow: 5px 5px 0 var(--color-white);
+    box-shadow: 5px 5px 0 var(--color-white), 0 0 15px rgba(0, 255, 234, 0.3);
 }
 
 .vibe-card h3 {
@@ -120,4 +127,10 @@
     font-size: 1.1rem;
     line-height: 1.5;
     color: #fff;
+}
+
+@media (max-width: 768px) {
+    .repertoire-subtitle {
+        display: none;
+    }
 }

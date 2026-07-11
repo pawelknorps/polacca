@@ -1,14 +1,38 @@
 import { useState } from 'react';
 import './PhotoAlbum.css';
+import { Picture } from './Picture';
 
-// Selection of photos for the album
+import img1Avif from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img1Webp from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img1Fallback from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=1200';
+
+import img2Avif from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img2Webp from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img2Fallback from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=1200';
+
+import img3Avif from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img3Webp from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img3Fallback from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=1200';
+
+import img4Avif from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img4Webp from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img4Fallback from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=1200';
+
+import img5Avif from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img5Webp from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img5Fallback from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=1200';
+
+import img6Avif from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img6Webp from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img6Fallback from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=1200';
+
 const albumPhotos = [
-    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6668.jpeg`,
-    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6689.jpeg`,
-    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6718.jpeg`,
-    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6748.jpeg`,
-    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6768.jpeg`,
-    `${import.meta.env.BASE_URL}assets/sylwester/IMG_6780.jpeg`,
+    { avif: img1Avif, webp: img1Webp, fallback: img1Fallback },
+    { avif: img2Avif, webp: img2Webp, fallback: img2Fallback },
+    { avif: img3Avif, webp: img3Webp, fallback: img3Fallback },
+    { avif: img4Avif, webp: img4Webp, fallback: img4Fallback },
+    { avif: img5Avif, webp: img5Webp, fallback: img5Fallback },
+    { avif: img6Avif, webp: img6Webp, fallback: img6Fallback },
 ];
 
 const AboutSection = () => {
@@ -34,14 +58,14 @@ const AboutSection = () => {
 
             <h3 className="section-subtitle-rotated" style={{ textShadow: '3px 3px 0 #ff007f', transform: 'rotate(-2deg)', textAlign: 'center', fontSize: '2.5rem', margin: '3rem 0' }}>Wspomnienia z Parkietu</h3>
             <div className="album-container">
-                {albumPhotos.map((src, index) => (
+                {albumPhotos.map((photo, index) => (
                     <div
                         key={index}
                         className={`photo-card rotate-${index % 3}`}
-                        onClick={() => setSelectedImage(src)}
+                        onClick={() => setSelectedImage(photo)}
                     >
                         <div className="photo-inner">
-                            <img src={src} alt={`Album photo ${index + 1}`} loading="lazy" />
+                            <Picture avif={photo.avif} webp={photo.webp} fallback={photo.fallback} alt={`Zdjęcie pamiątkowe ${index + 1}`} lazy={true} />
                         </div>
                         <div className="tape"></div>
                     </div>
@@ -51,7 +75,7 @@ const AboutSection = () => {
             {selectedImage && (
                 <div className="lightbox-overlay" onClick={() => setSelectedImage(null)}>
                     <div className="lightbox-content">
-                        <img src={selectedImage} alt="Enlarged memory" />
+                        <Picture avif={selectedImage.avif} webp={selectedImage.webp} fallback={selectedImage.fallback} alt="Powiększone zdjęcie" priority={true} lazy={false} />
                         <button className="lightbox-close">X</button>
                     </div>
                 </div>
