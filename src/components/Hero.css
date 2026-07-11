@@ -29,9 +29,14 @@
 .collage-img {
     position: absolute;
     object-fit: cover;
-    border: 12px solid white;
-    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.6);
-    will-change: transform;
+    border: 10px solid #f4f4f4;
+    border-bottom: 35px solid #f4f4f4; /* Polaroid look */
+    box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.85); /* Hard 90s zine shadow */
+    border-radius: 2px;
+    will-change: transform, scale;
+    transition: scale 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease, box-shadow 0.2s ease;
+    filter: contrast(1.1) brightness(0.95);
+    transform-origin: center center;
 }
 
 /* Bigger & More Chaotic Positioning with Parallax */
@@ -98,9 +103,12 @@
     z-index: 2;
 }
 
-/* Slight movement animation */
-.hero:hover .collage-img {
-    transform: scale(1.05);
+/* Individual hover effect */
+.collage-img:hover {
+    scale: 1.08;
+    z-index: 10 !important;
+    filter: contrast(1.2) brightness(1.1) saturate(1.2);
+    box-shadow: 12px 12px 0px #ff00de; /* Hot pink shadow on hover */
 }
 
 /* CRT Scanline Effect */

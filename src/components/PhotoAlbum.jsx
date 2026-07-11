@@ -2,29 +2,29 @@ import { useState } from 'react';
 import './PhotoAlbum.css';
 import { Picture } from './Picture';
 
-import img1Avif from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img1Webp from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img1Fallback from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=1200';
+import img1Avif from '../assets/zdjecia/IMG_6730.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img1Webp from '../assets/zdjecia/IMG_6730.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img1Fallback from '../assets/zdjecia/IMG_6730.jpeg?w=1200';
 
-import img2Avif from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img2Webp from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img2Fallback from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=1200';
+import img2Avif from '../assets/zdjecia/IMG_6736.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img2Webp from '../assets/zdjecia/IMG_6736.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img2Fallback from '../assets/zdjecia/IMG_6736.jpeg?w=1200';
 
-import img3Avif from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img3Webp from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img3Fallback from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=1200';
+import img3Avif from '../assets/zdjecia/IMG_6752.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img3Webp from '../assets/zdjecia/IMG_6752.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img3Fallback from '../assets/zdjecia/IMG_6752.jpeg?w=1200';
 
-import img4Avif from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img4Webp from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img4Fallback from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=1200';
+import img4Avif from '../assets/zdjecia/IMG_0497.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img4Webp from '../assets/zdjecia/IMG_0497.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img4Fallback from '../assets/zdjecia/IMG_0497.jpeg?w=1200';
 
-import img5Avif from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img5Webp from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img5Fallback from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=1200';
+import img5Avif from '../assets/zdjecia/IMG_6758.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img5Webp from '../assets/zdjecia/IMG_6758.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img5Fallback from '../assets/zdjecia/IMG_6758.jpeg?w=1200';
 
-import img6Avif from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img6Webp from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img6Fallback from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=1200';
+import img6Avif from '../assets/zdjecia/IMG_6676.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img6Webp from '../assets/zdjecia/IMG_6676.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img6Fallback from '../assets/zdjecia/IMG_6676.jpeg?w=1200';
 
 const albumPhotos = [
     { avif: img1Avif, webp: img1Webp, fallback: img1Fallback },

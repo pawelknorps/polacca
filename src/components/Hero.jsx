@@ -1,38 +1,54 @@
+import { useEffect, useRef } from 'react';
 import './Hero.css';
 import Marquee from './Marquee';
 import { Picture } from './Picture';
 
-import img1Avif from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img1Webp from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img1Fallback from '../assets/ZDJĘCIA/IMG_6676.jpeg?w=800';
+import img1Avif from '../assets/zdjecia/IMG_6676.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img1Webp from '../assets/zdjecia/IMG_6676.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img1Fallback from '../assets/zdjecia/IMG_6676.jpeg?w=800';
 
-import img2Avif from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img2Webp from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img2Fallback from '../assets/ZDJĘCIA/IMG_6730.jpeg?w=800';
+import img2Avif from '../assets/zdjecia/IMG_6730.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img2Webp from '../assets/zdjecia/IMG_6730.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img2Fallback from '../assets/zdjecia/IMG_6730.jpeg?w=800';
 
-import img3Avif from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img3Webp from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img3Fallback from '../assets/ZDJĘCIA/IMG_6736.jpeg?w=800';
+import img3Avif from '../assets/zdjecia/IMG_6736.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img3Webp from '../assets/zdjecia/IMG_6736.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img3Fallback from '../assets/zdjecia/IMG_6736.jpeg?w=800';
 
-import img4Avif from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img4Webp from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img4Fallback from '../assets/ZDJĘCIA/IMG_6752.jpeg?w=800';
+import img4Avif from '../assets/zdjecia/IMG_6752.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img4Webp from '../assets/zdjecia/IMG_6752.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img4Fallback from '../assets/zdjecia/IMG_6752.jpeg?w=800';
 
-import img5Avif from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img5Webp from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img5Fallback from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=800';
+import img5Avif from '../assets/zdjecia/IMG_0497.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img5Webp from '../assets/zdjecia/IMG_0497.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img5Fallback from '../assets/zdjecia/IMG_0497.jpeg?w=800';
 
-import img6Avif from '../assets/ZDJĘCIA/IMG_0001.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img6Webp from '../assets/ZDJĘCIA/IMG_0001.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img6Fallback from '../assets/ZDJĘCIA/IMG_0001.jpeg?w=800';
+import img6Avif from '../assets/zdjecia/IMG_0001.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img6Webp from '../assets/zdjecia/IMG_0001.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img6Fallback from '../assets/zdjecia/IMG_0001.jpeg?w=800';
 
-import img7Avif from '../assets/ZDJĘCIA/IMG_6696.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img7Webp from '../assets/ZDJĘCIA/IMG_6696.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img7Fallback from '../assets/ZDJĘCIA/IMG_6696.jpeg?w=800';
+import img7Avif from '../assets/zdjecia/IMG_6696.jpeg?w=400;800;1200&format=avif&as=srcset';
+import img7Webp from '../assets/zdjecia/IMG_6696.jpeg?w=400;800;1200&format=webp&as=srcset';
+import img7Fallback from '../assets/zdjecia/IMG_6696.jpeg?w=800';
 
 const Hero = () => {
+    const heroRef = useRef(null);
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            if (!heroRef.current) return;
+            const x = (e.clientX / window.innerWidth - 0.5) * 2;
+            const y = (e.clientY / window.innerHeight - 0.5) * 2;
+            heroRef.current.style.setProperty('--mouse-x', x);
+            heroRef.current.style.setProperty('--mouse-y', y);
+        };
+        
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
+
     return (
-        <section className="hero">
+        <section className="hero" ref={heroRef}>
             <div className="crt-overlay"></div>
             <div className="hero-overlay"></div>
 
