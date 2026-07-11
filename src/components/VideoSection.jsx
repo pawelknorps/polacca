@@ -6,30 +6,28 @@ const videos = [
         id: 1,
         title: "CH 1 - GŁÓWNY",
         sources: [
-            { src: `${import.meta.env.BASE_URL}assets/video_av1.webm`, type: 'video/webm; codecs=av01.0.05M.08' },
-            { src: `${import.meta.env.BASE_URL}assets/video.webm`, type: 'video/webm' },
-            { src: `${import.meta.env.BASE_URL}assets/9ce7488c-9f40-4a20-917b-4fd1439f5339.mp4`, type: 'video/mp4' }
+            { src: `${import.meta.env.BASE_URL}assets/optimized_videos/video1.webm`, type: 'video/webm' }
         ]
     },
     {
         id: 2,
         title: "CH 2 - SYLWESTER",
         sources: [
-            { src: `${import.meta.env.BASE_URL}assets/FILMY/SYLWESTER W GLIWICACH - teaser.mp4`, type: 'video/mp4' }
+            { src: `${import.meta.env.BASE_URL}assets/optimized_videos/video2.webm`, type: 'video/webm' }
         ]
     },
     {
         id: 3,
         title: "CH 3 - MASHUP",
         sources: [
-            { src: `${import.meta.env.BASE_URL}assets/FILMY/ALA POLACCA MASZAP KRÓTKI.mov`, type: 'video/mp4' }
+            { src: `${import.meta.env.BASE_URL}assets/optimized_videos/video3.webm`, type: 'video/webm' }
         ]
     },
     {
         id: 4,
         title: "CH 4 - KWIATY",
         sources: [
-            { src: `${import.meta.env.BASE_URL}assets/FILMY/ALA POLACCA - KWIATY WE WŁOSACH.mov`, type: 'video/mp4' }
+            { src: `${import.meta.env.BASE_URL}assets/optimized_videos/video4.webm`, type: 'video/webm' }
         ]
     }
 ];
