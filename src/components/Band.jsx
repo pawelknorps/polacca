@@ -1,25 +1,25 @@
 import './Band.css';
 import { Picture } from './Picture';
 
-import img1Avif from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img1Webp from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img1Fallback from '../assets/ZDJĘCIA/IMG_6758.jpeg?w=800';
+import img1Avif from '../assets/members/Michał.png?w=400;800;1200&format=avif&as=srcset';
+import img1Webp from '../assets/members/Michał.png?w=400;800;1200&format=webp&as=srcset';
+import img1Fallback from '../assets/members/Michał.png?w=800';
 
-import img2Avif from '../assets/ZDJĘCIA/IMG_0001.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img2Webp from '../assets/ZDJĘCIA/IMG_0001.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img2Fallback from '../assets/ZDJĘCIA/IMG_0001.jpeg?w=800';
+import img2Avif from '../assets/members/Malwina.png?w=400;800;1200&format=avif&as=srcset';
+import img2Webp from '../assets/members/Malwina.png?w=400;800;1200&format=webp&as=srcset';
+import img2Fallback from '../assets/members/Malwina.png?w=800';
 
-import img3Avif from '../assets/ZDJĘCIA/IMG_6696.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img3Webp from '../assets/ZDJĘCIA/IMG_6696.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img3Fallback from '../assets/ZDJĘCIA/IMG_6696.jpeg?w=800';
+import img3Avif from '../assets/members/PAulina.png?w=400;800;1200&format=avif&as=srcset';
+import img3Webp from '../assets/members/PAulina.png?w=400;800;1200&format=webp&as=srcset';
+import img3Fallback from '../assets/members/PAulina.png?w=800';
 
-import img4Avif from '../assets/ZDJĘCIA/IMG_6753.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img4Webp from '../assets/ZDJĘCIA/IMG_6753.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img4Fallback from '../assets/ZDJĘCIA/IMG_6753.jpeg?w=800';
+import img4Avif from '../assets/members/Pawel.png?w=400;800;1200&format=avif&as=srcset';
+import img4Webp from '../assets/members/Pawel.png?w=400;800;1200&format=webp&as=srcset';
+import img4Fallback from '../assets/members/Pawel.png?w=800';
 
-import img5Avif from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=400;800;1200&format=avif&as=srcset';
-import img5Webp from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=400;800;1200&format=webp&as=srcset';
-import img5Fallback from '../assets/ZDJĘCIA/IMG_0497.jpeg?w=800';
+import img5Avif from '../assets/members/Stasiu.png?w=400;800;1200&format=avif&as=srcset';
+import img5Webp from '../assets/members/Stasiu.png?w=400;800;1200&format=webp&as=srcset';
+import img5Fallback from '../assets/members/Stasiu.png?w=800';
 
 const members = [
     { name: 'Michał Fetler', role: 'wokal, saksofony', desc: 'Niestrudzony lider i mistrz sekcji dętej.', avif: img1Avif, webp: img1Webp, fallback: img1Fallback },
