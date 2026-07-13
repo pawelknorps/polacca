@@ -1,7 +1,6 @@
 .album-section {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-xl) var(--section-px);
     background-color: #0f0f1f;
-    /* Slightly lighter navy */
     text-align: center;
     overflow: hidden;
 }
@@ -21,30 +20,32 @@
 }
 
 .album-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 3rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(260px, 80vw), 1fr));
+    gap: clamp(1.5rem, 4vw, 3rem);
     max-width: 1200px;
     margin: 40px auto;
-    padding: 20px;
+    padding: 20px clamp(0.5rem, 2vw, 20px);
+    justify-items: center;
 }
 
 .photo-card {
     position: relative;
-    width: 280px;
+    width: 100%;
+    max-width: 300px;
     padding: 10px 10px 40px 10px;
-    /* More padding at bottom like polaroid */
     background: #fff;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
     transition: transform 0.3s ease, z-index 0.3s;
     z-index: 1;
 }
 
-.photo-card:hover {
-    transform: scale(1.1) rotate(0deg) !important;
-    z-index: 10;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+@media (hover: hover) and (pointer: fine) {
+    .photo-card:hover {
+        transform: scale(1.1) rotate(0deg) !important;
+        z-index: 10;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.6);
+    }
 }
 
 .photo-inner {
@@ -160,17 +161,15 @@
 }
 
 @media (max-width: 600px) {
-
     .album-container {
         gap: 1.5rem;
         margin: 20px auto;
+        padding: 10px;
     }
 
     .photo-card {
-        width: 100%;
-        max-width: 300px;
+        /* Grid already handles sizing — just disable rotation on narrow screens */
         transform: none !important;
-        /* Disable rotation on mobile for cleaner layout */
     }
 
     .tape {

@@ -1,9 +1,8 @@
 .band-section {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-xl) var(--section-px);
     background-color: var(--color-bg-navy);
     text-align: center;
     overflow-x: hidden;
-    /* Prevent horizontal scroll on page, but allow in grid */
 }
 
 .section-title {
@@ -17,10 +16,8 @@
     display: grid;
     /* Force 5 columns on large screens */
     grid-template-columns: repeat(5, 1fr);
-    gap: var(--spacing-md);
-    /* Reduced gap to fit */
+    gap: clamp(0.5rem, 2vw, 1rem);
     max-width: 1400px;
-    /* Wider max-width */
     margin: 0 auto;
     align-items: start;
 }
@@ -42,12 +39,15 @@
     }
 }
 
-.member-card:hover {
-    transform: translate(-4px, -4px);
-    box-shadow: 10px 10px 0 var(--color-accent-pink), 0 0 20px rgba(255, 0, 127, 0.4);
-    border-color: var(--color-accent-pink);
-    z-index: 10;
-    position: relative;
+/* Only apply translate hover on true pointer devices to avoid sticky states on touch */
+@media (hover: hover) and (pointer: fine) {
+    .member-card:hover {
+        transform: translate(-4px, -4px);
+        box-shadow: 10px 10px 0 var(--color-accent-pink), 0 0 20px rgba(255, 0, 127, 0.4);
+        border-color: var(--color-accent-pink);
+        z-index: 10;
+        position: relative;
+    }
 }
 
 .member-image-wrapper {
@@ -98,21 +98,31 @@
     color: #ccc;
 }
 
-/* Mobile: Stack them or Scroll them? "In line" usually means desktop. On mobile 5 in row is impossible.
-   I will use a scroll container for mobile to keep the "line" concept, or stack. Stacking is safer for UX.
-   But user asked for "retro crazy", maybe horizontal scroll? Let's stack for readability first. */
-@media (max-width: 1024px) {
+/* Tablet: 3 per row */
+@media (max-width: 1100px) {
+    .members-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Small tablet: 2 per row */
+@media (max-width: 720px) {
     .members-grid {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
-@media (max-width: 600px) {
+/* Mobile: 1 per row with full width card */
+@media (max-width: 440px) {
     .members-grid {
         grid-template-columns: 1fr;
     }
 
     .member-image-wrapper {
         aspect-ratio: 1;
+    }
+
+    .band-section {
+        padding: var(--spacing-xl) var(--spacing-md);
     }
 }

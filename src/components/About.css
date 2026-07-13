@@ -1,6 +1,6 @@
 .about-section,
 .repertoire-section {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-xl) var(--section-px);
     text-align: center;
     max-width: 1000px;
     margin: 0 auto;
@@ -37,7 +37,7 @@
 }
 
 .repertoire-subtitle {
-    font-size: 1.5rem;
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
     margin-bottom: var(--spacing-lg);
     color: var(--color-text-gold);
     background: var(--color-black);
@@ -60,7 +60,8 @@
     border: 2px dashed var(--color-text-gold);
     padding: var(--spacing-md);
     flex: 1;
-    min-width: 300px;
+    /* No hard min-width — will collapse gracefully */
+    min-width: min(300px, 90vw);
     box-shadow: -8px 8px 0 rgba(255, 255, 255, 0.1);
 }
 
@@ -111,9 +112,11 @@
     }
 }
 
-.vibe-card:hover {
-    transform: translate(-5px, -5px);
-    box-shadow: 5px 5px 0 var(--color-white), 0 0 15px rgba(0, 255, 234, 0.3);
+@media (hover: hover) and (pointer: fine) {
+    .vibe-card:hover {
+        transform: translate(-5px, -5px);
+        box-shadow: 5px 5px 0 var(--color-white), 0 0 15px rgba(0, 255, 234, 0.3);
+    }
 }
 
 .vibe-card h3 {
@@ -131,6 +134,18 @@
 
 @media (max-width: 768px) {
     .repertoire-subtitle {
-        display: none;
+        /* Keep visible but unrotate for readability */
+        transform: none;
+        font-size: 1rem;
+    }
+
+    .repertoire-list {
+        flex-direction: column;
+        gap: var(--spacing-md);
+    }
+
+    .setlist-column {
+        min-width: unset;
+        width: 100%;
     }
 }

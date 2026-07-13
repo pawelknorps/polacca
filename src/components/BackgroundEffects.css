@@ -9,7 +9,8 @@
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  /* Use dvh (dynamic viewport height) so it works on mobile browsers with address bar */
+  height: 100dvh;
   z-index: -1;
   pointer-events: none;
   overflow: hidden;
@@ -72,6 +73,24 @@
 
 @media (max-width: 768px) {
   .retro-grid {
-    display: none; /* Mobile minimalism */
+    /* Simplified retro grid on mobile — reduce size and opacity instead of hiding */
+    background-size: 30px 30px;
+    opacity: 0.5;
+  }
+
+  /* Shrink orbs on mobile so blur compositing is cheaper */
+  .orb-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .orb-2 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .orb-3 {
+    width: 150px;
+    height: 150px;
   }
 }

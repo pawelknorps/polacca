@@ -1,5 +1,5 @@
 .video-section {
-    padding: var(--spacing-xl) var(--spacing-md);
+    padding: var(--spacing-xl) var(--section-px);
     position: relative;
     overflow: hidden;
     display: flex;
@@ -11,11 +11,9 @@
     width: 100%;
     max-width: 900px;
     aspect-ratio: 4/3;
-    /* TV Set ratio roughly */
     background: linear-gradient(135deg, #1f1f1f 0%, #111 100%);
     border-radius: 12px;
-    /* Older TVs were boxy but maybe some rounding */
-    padding: clamp(1rem, 3vw, 2.5rem);
+    padding: clamp(0.6rem, 3vw, 2.5rem);
     box-shadow:
         0 25px 60px rgba(0, 0, 0, 0.8),
         inset 0 2px 5px rgba(255, 255, 255, 0.1),
@@ -168,12 +166,13 @@
 }
 
 .tv-controls {
-    height: 60px;
+    height: clamp(40px, 7vw, 60px);
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-top: 10px;
-    padding: 0 10px;
+    margin-top: 8px;
+    padding: 0 clamp(4px, 1vw, 10px);
+    flex-shrink: 0;
 }
 
 .brand-badge {
@@ -194,12 +193,12 @@
 
 .knobs {
     display: flex;
-    gap: 15px;
+    gap: clamp(8px, 2vw, 15px);
 }
 
 .knob {
-    width: 36px;
-    height: 36px;
+    width: clamp(24px, 5vw, 36px);
+    height: clamp(24px, 5vw, 36px);
     background: radial-gradient(circle at 30% 30%, #444, #111);
     border-radius: 50%;
     border: 2px solid #000;
@@ -207,6 +206,9 @@
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.7), inset 0 2px 4px rgba(255,255,255,0.2);
     cursor: pointer;
     transition: transform 0.2s, box-shadow 0.2s;
+    /* Touch-friendly minimum */
+    min-width: 32px;
+    min-height: 32px;
 }
 
 .knob:active {
@@ -229,36 +231,38 @@
 
 @media (max-width: 600px) {
     .video-section {
-        padding: 2rem 0.5rem;
+        padding: var(--spacing-xl) 0.5rem;
     }
 
     .tv-set {
-        padding: 0.8rem;
-        /* Reduce padding inside the TV box */
+        padding: 0.5rem;
         width: 100%;
         max-width: 100%;
-        /* Ensure it doesn't overflow */
-        border-width: 2px;
+        /* On very small screens, switch to 16:9 so video fills nicely */
+        aspect-ratio: 16/10;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     }
 
     .tv-screen-container {
-        border-width: 8px;
-        /* Thinner bezel for small screens */
+        border-width: 6px;
     }
 
     .tv-controls {
-        padding: 0;
-        margin-top: 5px;
+        padding: 0 4px;
+        margin-top: 4px;
+        height: 36px;
     }
 
     .brand-badge {
-        font-size: 0.6rem;
+        font-size: 0.55rem;
         letter-spacing: 1px;
+        padding: 2px 6px;
     }
 
     .knob {
         width: 24px;
         height: 24px;
+        min-width: 24px;
+        min-height: 24px;
     }
 }

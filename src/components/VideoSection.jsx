@@ -94,6 +94,19 @@ const VideoSection = () => {
         return () => clearTimeout(timer);
     }, []);
 
+    useEffect(() => {
+        const handlePlayVideo = () => {
+            setDemoMode(false);
+            if (videoRef.current) {
+                videoRef.current.muted = false;
+                videoRef.current.play().catch(e => console.log("Autoplay prevented", e));
+            }
+        };
+
+        window.addEventListener('playVideo', handlePlayVideo);
+        return () => window.removeEventListener('playVideo', handlePlayVideo);
+    }, []);
+
     return (
         <section className="video-section" id="video">
             <h2 className="section-title" style={{ marginBottom: '2rem' }}>Taśmy Prawdy</h2>

@@ -76,7 +76,7 @@ const Hero = () => {
 
                 <div className="hero-actions">
                     <a href="#contact" className="btn-primary swing-hover">Zarezerwuj Termin</a>
-                    <a href="#video" className="btn-secondary blink-hover">Posłuchaj Nas</a>
+                    <a href="#video" className="btn-secondary blink-hover" onClick={() => window.dispatchEvent(new CustomEvent('playVideo'))}>Posłuchaj Nas</a>
                 </div>
 
                 <div className="social-links">
