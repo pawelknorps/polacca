@@ -9,8 +9,8 @@
 
 .tv-set {
     width: 100%;
-    max-width: 900px;
-    aspect-ratio: 4/3;
+    max-width: 1200px;
+    aspect-ratio: 16/9;
     background: linear-gradient(135deg, #1f1f1f 0%, #111 100%);
     border-radius: 12px;
     padding: clamp(0.6rem, 3vw, 2.5rem);
@@ -238,8 +238,8 @@
         padding: 0.5rem;
         width: 100%;
         max-width: 100%;
-        /* On very small screens, switch to 16:9 so video fills nicely */
-        aspect-ratio: 16/10;
+        /* Keep 16:9 on mobile as well */
+        aspect-ratio: 16/9;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     }
 

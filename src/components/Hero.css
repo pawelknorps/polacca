@@ -35,8 +35,8 @@
     border-bottom: 35px solid #f4f4f4;
     box-shadow: 8px 8px 0px rgba(0, 0, 0, 0.85);
     border-radius: 2px;
-    will-change: transform, opacity;
-    transition: scale 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease, box-shadow 0.4s ease;
+    will-change: transform, opacity, left, top, width, height;
+    transition: scale 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.4s ease, box-shadow 0.4s ease, left 0.8s cubic-bezier(0.25, 1, 0.5, 1), top 0.8s cubic-bezier(0.25, 1, 0.5, 1), width 0.8s cubic-bezier(0.25, 1, 0.5, 1), height 0.8s cubic-bezier(0.25, 1, 0.5, 1), margin-left 0.8s cubic-bezier(0.25, 1, 0.5, 1);
     filter: contrast(1.05) brightness(0.95) saturate(1.0);
     transform-origin: center center;
     pointer-events: auto;
@@ -150,10 +150,10 @@
     --final-rotate: -10deg;
     --parallax-x: -20px;
     --parallax-y: -20px;
-    width: 45%;
-    height: 65%;
-    top: 10%;
-    left: 28%;
+    width: 38%;
+    height: 50%;
+    top: 12%;
+    left: 31%;
     z-index: 1;
     animation:
         postcard-fly-in-left 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s forwards,
@@ -165,10 +165,10 @@
     --final-rotate: 20deg;
     --parallax-x: 30px;
     --parallax-y: 30px;
-    width: 35%;
-    height: 45%;
-    top: -10%;
-    left: -10%;
+    width: 28%;
+    height: 38%;
+    top: -5%;
+    left: -5%;
     z-index: 2;
     animation:
         postcard-fly-in-top 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.3s forwards,
@@ -180,10 +180,10 @@
     --final-rotate: -15deg;
     --parallax-x: -40px;
     --parallax-y: -40px;
-    width: 40%;
-    height: 55%;
-    bottom: -15%;
-    right: -10%;
+    width: 32%;
+    height: 42%;
+    top: 60%;
+    left: 75%;
     z-index: 2;
     animation:
         postcard-fly-in-right 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.5s forwards,
@@ -195,10 +195,10 @@
     --final-rotate: 25deg;
     --parallax-x: 50px;
     --parallax-y: 50px;
-    width: 30%;
-    height: 40%;
-    bottom: 0%;
-    left: 5%;
+    width: 28%;
+    height: 38%;
+    top: 65%;
+    left: 2%;
     z-index: 3;
     animation:
         postcard-fly-in-bottom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.7s forwards,
@@ -210,10 +210,10 @@
     --final-rotate: 8deg;
     --parallax-x: -60px;
     --parallax-y: -60px;
-    width: 30%;
+    width: 25%;
     height: 35%;
-    top: 10%;
-    right: 2%;
+    top: 5%;
+    left: 75%;
     z-index: 3;
     animation:
         postcard-fly-in-right 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s forwards,
@@ -225,10 +225,10 @@
     --final-rotate: -15deg;
     --parallax-x: 10px;
     --parallax-y: 10px;
-    width: 25%;
-    height: 30%;
-    bottom: 20%;
-    right: 20%;
+    width: 22%;
+    height: 32%;
+    top: 35%;
+    left: 82%;
     z-index: 1;
     animation:
         postcard-fly-in-bottom 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.9s forwards,
@@ -240,8 +240,8 @@
     --final-rotate: 5deg;
     --parallax-x: -15px;
     --parallax-y: -15px;
-    width: 28%;
-    height: 35%;
+    width: 24%;
+    height: 34%;
     top: 40%;
     left: -5%;
     z-index: 2;
@@ -501,10 +501,15 @@
 
 /* ── Tablet Responsive (481px – 900px) ── */
 @media (max-width: 900px) {
-    /* Show 3 cards on tablet, 2 cards on mobile */
-    .img-6 {
-        display: none;
-    }
+    .img-1 { width: 42%; height: 45%; top: 10%; left: 29%; }
+    .img-2 { width: 30%; height: 35%; top: -5%; left: -8%; }
+    .img-3 { width: 35%; height: 40%; top: 65%; left: 70%; }
+    .img-4 { width: 30%; height: 35%; top: 70%; left: 2%; }
+    .img-5 { width: 28%; height: 35%; top: 5%; left: 78%; }
+    
+    /* Glide out 6 and 7 smoothly */
+    .img-6 { top: 50%; left: 110%; opacity: 0; pointer-events: none; }
+    .img-7 { top: 50%; left: -30%; opacity: 0; pointer-events: none; }
 }
 
 /* ── Mobile Responsive (up to 600px) ── */
@@ -533,32 +538,31 @@
         padding: 0.8rem 1.25rem;
     }
 
-    /* Tighten the collage — show 3 key shots */
+    /* Tighten the collage — show 3 key shots, glide others off-screen smoothly */
     .img-1 {
-        width: 65%;
-        left: 17%;
+        width: 55%;
+        height: 35%;
+        left: 22%;
         top: 8%;
     }
 
-    .img-2,
-    .img-3,
-    .img-5,
-    .img-6 {
-        display: none;
-    }
+    .img-2 { top: -30%; left: -30%; opacity: 0; pointer-events: none; }
+    .img-3 { top: 110%; left: 110%; opacity: 0; pointer-events: none; }
+    .img-5 { top: -30%; left: 110%; opacity: 0; pointer-events: none; }
 
     .img-4 {
-        width: 48%;
-        bottom: 18%;
-        left: 2%;
+        width: 42%;
+        height: 28%;
+        top: 68%;
+        left: -5%;
         z-index: 0;
     }
 
     .img-7 {
         width: 42%;
-        top: auto;
-        bottom: 12%;
-        right: 2%;
+        height: 28%;
+        top: 72%;
+        left: 63%;
         z-index: 2;
     }
 

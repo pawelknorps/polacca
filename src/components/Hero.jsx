@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState, useCallback } from 'react';
 import './Hero.css';
 import Marquee from './Marquee';
 import { Picture } from './Picture';
@@ -31,8 +31,77 @@ import img7Avif from '../assets/zdjecia/IMG_6696.jpeg?w=400;800;1200&format=avif
 import img7Webp from '../assets/zdjecia/IMG_6696.jpeg?w=400;800;1200&format=webp&as=srcset';
 import img7Fallback from '../assets/zdjecia/IMG_6696.jpeg?w=800';
 
+/* ── Layout presets ──
+   Each layout is an array of 7 objects: { top, left, width, height, rotate, z }
+   Values in % except rotate (deg) and z (int).
+   null = use CSS default (layout 0). */
+const LAYOUTS = [
+    // 0 — default scattered (explicit coordinates matching CSS)
+    [
+        { left: '28%', top: '10%', width: '45%', height: '65%', rotate: -10, z: 1, ml: '0' },
+        { left: '-10%', top: '-10%', width: '35%', height: '45%', rotate: 20, z: 2, ml: '0' },
+        { left: '70%', top: '60%', width: '40%', height: '55%', rotate: -15, z: 2, ml: '0' },
+        { left: '5%', top: '60%', width: '30%', height: '40%', rotate: 25, z: 3, ml: '0' },
+        { left: '68%', top: '10%', width: '30%', height: '35%', rotate: 8, z: 3, ml: '0' },
+        { left: '55%', top: '50%', width: '25%', height: '30%', rotate: -15, z: 1, ml: '0' },
+        { left: '-5%', top: '40%', width: '28%', height: '35%', rotate: 5, z: 2, ml: '0' },
+    ],
+    // 1 — fan spread from center bottom
+    [
+        { left: '50%', top: '15%', width: '28%', height: '50%', rotate: -18, z: 1, ml: '-14%' },
+        { left: '50%', top: '12%', width: '28%', height: '50%', rotate: -12, z: 2, ml: '-14%' },
+        { left: '50%', top: '10%', width: '28%', height: '50%', rotate: -6,  z: 3, ml: '-14%' },
+        { left: '50%', top: '8%',  width: '28%', height: '50%', rotate: 0,   z: 7, ml: '-14%' },
+        { left: '50%', top: '10%', width: '28%', height: '50%', rotate: 6,   z: 3, ml: '-14%' },
+        { left: '50%', top: '12%', width: '28%', height: '50%', rotate: 12,  z: 2, ml: '-14%' },
+        { left: '50%', top: '15%', width: '28%', height: '50%', rotate: 18,  z: 1, ml: '-14%' },
+    ],
+    // 2 — spotlight: one big center, rest small around edges
+    [
+        { left: '25%', top: '10%', width: '50%', height: '70%', rotate: -2, z: 7, ml: '0' },
+        { left: '-5%', top: '5%',  width: '22%', height: '30%', rotate: -15, z: 2, ml: '0' },
+        { left: '78%', top: '0%',  width: '22%', height: '30%', rotate: 12,  z: 2, ml: '0' },
+        { left: '-3%', top: '60%', width: '20%', height: '28%', rotate: 8,   z: 2, ml: '0' },
+        { left: '80%', top: '55%', width: '20%', height: '28%', rotate: -10, z: 2, ml: '0' },
+        { left: '15%', top: '70%', width: '18%', height: '25%', rotate: 5,   z: 1, ml: '0' },
+        { left: '65%', top: '72%', width: '18%', height: '25%', rotate: -8,  z: 1, ml: '0' },
+    ],
+    // 3 — diagonal cascade (staircase)
+    [
+        { left: '2%',  top: '5%',  width: '26%', height: '35%', rotate: -5,  z: 7, ml: '0' },
+        { left: '14%', top: '18%', width: '26%', height: '35%', rotate: 3,   z: 6, ml: '0' },
+        { left: '26%', top: '5%',  width: '26%', height: '35%', rotate: -2,  z: 5, ml: '0' },
+        { left: '38%', top: '18%', width: '26%', height: '35%', rotate: 4,   z: 4, ml: '0' },
+        { left: '50%', top: '5%',  width: '26%', height: '35%', rotate: -3,  z: 3, ml: '0' },
+        { left: '62%', top: '18%', width: '26%', height: '35%', rotate: 2,   z: 2, ml: '0' },
+        { left: '74%', top: '5%',  width: '26%', height: '35%', rotate: -4,  z: 1, ml: '0' },
+    ],
+    // 4 — orbit / circle
+    [
+        { left: '38%', top: '2%',  width: '24%', height: '32%', rotate: 0,   z: 4, ml: '0' },
+        { left: '65%', top: '10%', width: '24%', height: '32%', rotate: 8,   z: 3, ml: '0' },
+        { left: '75%', top: '38%', width: '24%', height: '32%', rotate: 15,  z: 2, ml: '0' },
+        { left: '60%', top: '62%', width: '24%', height: '32%', rotate: 5,   z: 1, ml: '0' },
+        { left: '30%', top: '62%', width: '24%', height: '32%', rotate: -5,  z: 1, ml: '0' },
+        { left: '2%',  top: '38%', width: '24%', height: '32%', rotate: -15, z: 2, ml: '0' },
+        { left: '10%', top: '10%', width: '24%', height: '32%', rotate: -8,  z: 3, ml: '0' },
+    ],
+];
+
+const images = [
+    { avif: img1Avif, webp: img1Webp, fallback: img1Fallback, alt: 'Zdjęcie z koncertu 1' },
+    { avif: img2Avif, webp: img2Webp, fallback: img2Fallback, alt: 'Zdjęcie z koncertu 2' },
+    { avif: img3Avif, webp: img3Webp, fallback: img3Fallback, alt: 'Zdjęcie z koncertu 3' },
+    { avif: img4Avif, webp: img4Webp, fallback: img4Fallback, alt: 'Zdjęcie z koncertu 4' },
+    { avif: img5Avif, webp: img5Webp, fallback: img5Fallback, alt: 'Zdjęcie z koncertu 5' },
+    { avif: img6Avif, webp: img6Webp, fallback: img6Fallback, alt: 'Zdjęcie z koncertu 6' },
+    { avif: img7Avif, webp: img7Webp, fallback: img7Fallback, alt: 'Zdjęcie z koncertu 7' },
+];
+
 const Hero = () => {
     const heroRef = useRef(null);
+    const [layoutIndex, setLayoutIndex] = useState(0);
+    const [hasClicked, setHasClicked] = useState(false);
 
     useEffect(() => {
         const handleMouseMove = (e) => {
@@ -47,20 +116,60 @@ const Hero = () => {
         return () => window.removeEventListener('mousemove', handleMouseMove);
     }, []);
 
+    const cycleLayout = useCallback(() => {
+        setHasClicked(true);
+        setLayoutIndex(prev => (prev + 1) % LAYOUTS.length);
+    }, []);
+
+    const currentLayout = LAYOUTS[layoutIndex];
+
+    const getGlowAnimation = (i) => {
+        const type = ['pink', 'cyan', 'gold', 'pink', 'cyan', 'gold', 'pink'][i];
+        const duration = [6, 7, 8, 9, 6.5, 7.5, 8][i];
+        return `neon-glow-${type} ${duration}s ease-in-out infinite`;
+    };
+
+    /** Build inline style for a card when in a non-default layout */
+    const getCardStyle = (i) => {
+        if (!hasClicked) return undefined;
+        const c = currentLayout[i];
+        return {
+            left: c.left,
+            top: c.top,
+            bottom: 'auto',
+            right: 'auto',
+            width: c.width,
+            height: c.height,
+            transform: `rotate(${c.rotate}deg)`,
+            zIndex: c.z,
+            marginLeft: c.ml || '0',
+            // Keep glow, disable float/entrance
+            animation: getGlowAnimation(i),
+            opacity: 1,
+        };
+    };
+
     return (
         <section className="hero" ref={heroRef}>
             <div className="crt-overlay"></div>
             <div className="hero-overlay"></div>
 
             {/* Wycinanka Collage Background */}
-            <div className="collage-background">
-                <Picture avif={img1Avif} webp={img1Webp} fallback={img1Fallback} alt="Zdjęcie z koncertu 1" className="collage-img img-1" priority={true} lazy={false} />
-                <Picture avif={img2Avif} webp={img2Webp} fallback={img2Fallback} alt="Zdjęcie z koncertu 2" className="collage-img img-2" priority={true} lazy={false} />
-                <Picture avif={img3Avif} webp={img3Webp} fallback={img3Fallback} alt="Zdjęcie z koncertu 3" className="collage-img img-3" priority={true} lazy={false} />
-                <Picture avif={img4Avif} webp={img4Webp} fallback={img4Fallback} alt="Zdjęcie z koncertu 4" className="collage-img img-4" priority={true} lazy={false} />
-                <Picture avif={img5Avif} webp={img5Webp} fallback={img5Fallback} alt="Zdjęcie z koncertu 5" className="collage-img img-5" priority={true} lazy={false} />
-                <Picture avif={img6Avif} webp={img6Webp} fallback={img6Fallback} alt="Zdjęcie z koncertu 6" className="collage-img img-6" priority={true} lazy={false} />
-                <Picture avif={img7Avif} webp={img7Webp} fallback={img7Fallback} alt="Zdjęcie z koncertu 7" className="collage-img img-7" priority={true} lazy={false} />
+            <div className={`collage-background ${hasClicked ? 'layout-active' : ''}`}>
+                {images.map((img, i) => (
+                    <Picture
+                        key={i}
+                        avif={img.avif}
+                        webp={img.webp}
+                        fallback={img.fallback}
+                        alt={img.alt}
+                        className={`collage-img img-${i + 1}`}
+                        priority={true}
+                        lazy={false}
+                        style={currentLayout ? getCardStyle(i) : undefined}
+                        onClick={cycleLayout}
+                    />
+                ))}
             </div>
 
             <div className="hero-content">
