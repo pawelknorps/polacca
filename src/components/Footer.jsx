@@ -4,13 +4,32 @@ import './Footer.css';
 const Footer = () => {
     const [status, setStatus] = useState('idle'); // idle, submitting, success
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('submitting');
-        // Simulate network request
-        setTimeout(() => {
-            setStatus('success');
-        }, 1500);
+        
+        const form = e.target;
+        const formData = new FormData(form);
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                body: formData
+            });
+
+            if (response.ok) {
+                setStatus('success');
+                form.reset();
+            } else {
+                console.error('Failed to send email');
+                setStatus('idle');
+                alert('Wystąpił błąd podczas wysyłania wiadomości.');
+            }
+        } catch (error) {
+            console.error('Network error:', error);
+            setStatus('idle');
+            alert('Wystąpił błąd połączenia.');
+        }
     };
 
     return (
