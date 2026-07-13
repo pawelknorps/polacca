@@ -62,8 +62,8 @@ const Footer = () => {
                             </div>
 
                             <div className="input-group">
-                                <label>&gt; Data i Cel misji:</label>
-                                <input type="text" name="date" placeholder="DD.MM.YYYY, Warszawa..." className="terminal-input" required />
+                                <label>&gt; Adres e-mail:</label>
+                                <input type="email" name="email" placeholder="jan.kowalski@example.com..." className="terminal-input" required />
                             </div>
 
                             <div className="input-group">

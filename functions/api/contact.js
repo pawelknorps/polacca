@@ -7,17 +7,18 @@ export async function onRequestPost(context) {
     try {
         const formData = await context.request.formData();
         const name = formData.get('name') || 'Nie podano';
-        const date = formData.get('date') || 'Nie podano';
+        const email = formData.get('email') || 'Nie podano';
         const message = formData.get('message') || 'Brak treści';
 
         const { data, error } = await resend.emails.send({
             from: 'onboarding@resend.dev',
             to: 'alapolacca@gmail.com',
+            reply_to: email,
             subject: `Nowa wiadomość ze strony: ${name}`,
             html: `
                 <h2>Nowa wiadomość (contact.exe)</h2>
                 <p><strong>Obywatel / Firma:</strong> ${name}</p>
-                <p><strong>Data i Cel misji:</strong> ${date}</p>
+                <p><strong>Adres e-mail:</strong> ${email}</p>
                 <p><strong>Treść depeszy:</strong><br/>${message.replace(/\n/g, '<br/>')}</p>
             `
         });
