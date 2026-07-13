@@ -9,8 +9,7 @@
 
 .tv-set {
     width: 100%;
-    max-width: 1200px;
-    aspect-ratio: 16/9;
+    max-width: 1400px;
     background: linear-gradient(135deg, #1f1f1f 0%, #111 100%);
     border-radius: 12px;
     padding: clamp(0.6rem, 3vw, 2.5rem);
@@ -28,7 +27,7 @@
 
 .tv-screen-container {
     width: 100%;
-    flex-grow: 1;
+    aspect-ratio: 16/9;
     background: #000;
     border-radius: 50% / 5%;
     /* Subtle curve */
@@ -238,8 +237,6 @@
         padding: 0.5rem;
         width: 100%;
         max-width: 100%;
-        /* Keep 16:9 on mobile as well */
-        aspect-ratio: 16/9;
         box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5);
     }
 
